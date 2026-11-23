@@ -32,6 +32,7 @@ function buildBoard() {
   const button=(action,text,cls='',label='')=>`<button type="button" data-action="${action}" class="${cls}"${label?` aria-label="${label}"`:''}>${text}</button>`;
   const dot=(e)=>`<span class="app-icon i-${e.icon}">${icon(e.icon)}</span>`;
   const total=events.reduce((n,e)=>n+e.qty,0);
+  const wordmark = '<span class="word"><img src="icons/09-note.png" alt="">Wispel</span>';
   function status(ios=false) {
     return `<div class="status"><b>${ios?'9:41':'14:32'}</b><span class="signal" aria-hidden="true"><i></i><i></i><i></i><em></em></span></div>`;
   }
@@ -41,7 +42,7 @@ function buildBoard() {
   function home() {
     const s=state, pause=button('pause',icon(s.paused?'play':'pause',13)+(s.paused?'재개':'잠시 쉬기'),'pill');
     const source=`<div class="source">${icon('phone',13)} 업무용 아이폰 <span>· 마지막 수신 14:31</span></div>`;
-    const header=`<div class="app-head"><span class="word">Wispel</span>${pause}</div>`;
+    const header=`<div class="app-head">${wordmark}${pause}</div>`;
     const section=(name,n)=>`<div class="section-label"><b>${name}</b><span>${n}</span></div>`;
     const body=`<h3>최근 알림</h3>${source}${section('앱별로 보기',`오늘 ${total}건`)}<div class="tile-grid">${events.map(e=>button('app-'+e.icon,`${icon(e.icon,18)}<b>${e.qty}<small>건</small></b><strong>${e.app}</strong>`,'tile t-'+e.icon)).join('')}</div>${section('마지막 수신','14:31')}${list(events.slice(0,1))}`;
     return header+(s.paused?`<div class="notice">전달 일시정지 · ${s.paused}</div>`:'')+body;
@@ -49,17 +50,17 @@ function buildBoard() {
   function settings() {
     const s=state;
     const row=(key,title,sub)=>button(key,`<b>${title}</b><span>${sub} ›</span>`,'setting-row');
-    return `<div class="app-head"><span class="word">Wispel</span></div><h3>설정</h3>
+    return `<div class="app-head">${wordmark}</div><h3>설정</h3>
       <div class="section-label"><b>기기 관리</b></div><div class="device-card"><small>이 폰 · 받기 전용</small><strong>안드로이드 본폰</strong><div>← 업무용 아이폰 · 보내기 전용</div></div>
       <div class="section-label"><b>알림 설정</b></div>${row('receive','받을 알림',`${s.receive.size}종류`)}${row('watch','워치에 표시',`${s.watch.size}종류`)}${row('sound','소리와 진동','시스템 채널')}${row('pause','잠시 쉬기',s.paused||'꺼짐')}${row('history','기록 보관',s.history)}`;
   }
   function ios() {
     const rows=(names)=>names.map(name=>`<div class="shortcut"><b>${name}</b>${button('shortcut-'+name,'받기','get',`${name} 단축어 받기`)}</div>`).join('');
-    return `<div class="app-head"><span class="word">Wispel</span></div><h3>단축어 받기</h3><div class="device-card"><small>이 폰 · 보내기 전용</small><strong>업무용 아이폰</strong><div>→ 안드로이드 본폰</div></div><div class="section-label"><b>기본 앱 알림</b></div>${rows(['전화','문자'])}<div class="section-label"><b>일반 앱 알림</b></div>${rows(['카카오톡','Slack','메일플러그'])}${button('ios-test','시험 알림 보내기','primary')}`;
+    return `<div class="app-head">${wordmark}</div><h3>단축어 받기</h3><div class="device-card"><small>이 폰 · 보내기 전용</small><strong>업무용 아이폰</strong><div>→ 안드로이드 본폰</div></div><div class="section-label"><b>기본 앱 알림</b></div>${rows(['전화','문자'])}<div class="section-label"><b>일반 앱 알림</b></div>${rows(['카카오톡','Slack','메일플러그'])}${button('ios-test','시험 알림 보내기','primary')}`;
   }
   function watch() {
     const s=state, visible=s.watch.has('부재중 전화')&&s.receive.has('부재중 전화')&&!s.paused;
-    return `<div class="watch-wrap"><span class="strap"></span><div class="dial"><time>14:18</time>${icon('call',24)}<b>${visible?'부재중 전화':'알림 없음'}</b><small>${visible?'업무용 아이폰':'위스펠'}</small></div></div><div class="watch-caption">Wear OS 시스템 알림 미리보기</div>`;
+    return `<div class="watch-wrap"><span class="strap"></span><div class="dial"><time>14:18</time><span class="note-glyph" role="img" aria-label="위스펠"></span><b>${visible?'부재중 전화':'알림 없음'}</b><small>${visible?'업무용 아이폰':'위스펠'}</small></div></div><div class="watch-caption">Wear OS 시스템 알림 미리보기</div>`;
   }
   function frame(key) {
     if(key==='watch') return watch();

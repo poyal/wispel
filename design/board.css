@@ -1,6 +1,8 @@
 :root {
   color-scheme: light;
   --ink:#292c2b; --sub:#60635e; --rule:#d8d9d1;
+  --note-field:#043d2b; --note-face:#fdd863; --note-fold:#fbf0dc;
+  --tile-chat:#f4d67b; --tile-call:#e8c6b5; --tile-slack:#cfd9f3; --tile-mail:#d2dfd0; --tile-sms:#e4dbeb;
   font-family:"Instrument Sans","Segoe UI","Malgun Gothic",sans-serif;
   color:var(--ink); background:#f7f7f2; font-synthesis:none;
 }
@@ -14,7 +16,24 @@ a{color:inherit}
 button, a{touch-action:manipulation}
 .mast{display:flex;align-items:center;gap:16px;min-height:70px;border-bottom:1px solid var(--rule);padding:0 clamp(18px,3vw,55px)}
 .brand{font:italic 600 34px/1 Georgia,serif;letter-spacing:-2.3px;display:inline-flex;align-items:center;gap:9px;text-decoration:none}
-.brand-mark{display:inline-grid;place-items:center;background:#3b4a3f;color:#f4f7ed;border-radius:14px 5px 14px 5px;width:29px;height:29px;font-size:26px;line-height:24px;padding:0 3px 5px 0}
+.brand-mark{display:block;border-radius:23%;width:29px;height:29px}
+.identity{display:flex;align-items:center;gap:22px;padding:26px 0}
+.app-master{display:block;width:108px;height:108px;border-radius:23%}
+.identity p{margin:0 0 8px;color:var(--sub);font-size:13px}
+.identity h1{margin:0}.identity h1 span{color:#708073;font-weight:400}
+.identity-colors{display:flex;gap:18px;list-style:none;padding:0;margin:0 0 0 auto}
+.identity-colors li{display:grid;grid-template-columns:20px auto;gap:2px 6px;align-items:center;font-size:11px}
+.identity-colors i{grid-row:span 2;width:20px;height:32px;border-radius:5px;border:1px solid #0001}
+.identity-colors code{font-size:10px;color:var(--sub)}
+.tone-green{background:var(--note-field)}.tone-yellow{background:var(--note-face)}.tone-cream{background:var(--note-fold)}
+.word{display:inline-flex;align-items:center;gap:6px}.word img{width:21px;height:21px;border-radius:23%}
+.note-glyph{display:inline-block;position:relative;width:17px;height:17px;border-radius:3px;overflow:hidden}
+.note-glyph::before,.note-glyph::after{content:"";position:absolute;inset:0;background:currentColor}
+.note-glyph::before{clip-path:polygon(0 0,100% 0,100% 38%,38% 100%,0 100%)}
+.note-glyph::after{clip-path:polygon(100% 53%,100% 100%,53% 100%)}
+.diagnostics-strip{display:flex;align-items:center;gap:24px;padding:16px 18px;background:#e5ebe0;border-radius:12px;font-size:12px;color:#314b3b}
+.diagnostics-strip a{margin-right:auto;font-size:14px;font-weight:bold}.diagnostics-strip b{margin-left:4px}
+@media(max-width:760px){.identity{flex-wrap:wrap;gap:12px}.app-master{width:72px;height:72px}.identity-colors{width:100%;margin:4px 0 0}.diagnostics-strip{flex-wrap:wrap;gap:8px 16px}.diagnostics-strip a{width:100%}}
 .mast-sub{border-left:1px solid #cdcec6;padding-left:16px;font-size:12px;color:var(--sub)}
 .plan-link,.open-detail,.back,.view-bar button,.detail-views button,.sheet-close{font-weight:600;font-size:12px}
 .plan-link{margin-left:auto;text-decoration:none}
@@ -85,8 +104,8 @@ h3{font-size:25px;line-height:1.22;letter-spacing:-.075em;margin:14px 0 7px}
 .tile-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .tile{display:grid;grid-template-columns:1fr auto;grid-template-rows:1fr auto;align-items:center;background:#e5ebde;color:#24372d;padding:10px;text-align:left;border-radius:10px;min-height:65px}
 .tile b{font:500 23px/1 Georgia,serif}.tile b small{font:600 9px/1 sans-serif;margin-left:2px}
-.tile strong{grid-column:span 2;font-size:11px}.t-chat{grid-column:span 2;min-height:70px;background:#f4d67b}
-.t-call{background:#e8c6b5}.t-hash{background:#cfd9f3}.t-mail{background:#d2dfd0}.t-sms{background:#e4dbeb}
+.tile strong{grid-column:span 2;font-size:11px}.tile:first-child{grid-column:span 2;min-height:70px}
+.t-chat{background:var(--tile-chat)}.t-call{background:var(--tile-call)}.t-hash{background:var(--tile-slack)}.t-mail{background:var(--tile-mail)}.t-sms{background:var(--tile-sms)}
 .route-hero{margin:13px 0 1px;background:#244aa8;color:white;padding:12px;border-radius:10px}
 .route{display:flex;align-items:center;justify-content:space-between;gap:4px;margin:12px 0}
 .route>div{display:grid;justify-items:start;gap:5px}.route strong{font-size:11px;letter-spacing:-.055em}.route small{font-size:9px}
