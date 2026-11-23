@@ -1,0 +1,15 @@
+.wispel-tools/
+artifacts/
+**/bin/
+**/obj/
+**/.gradle/
+**/.kotlin/
+**/build/
+**/.build/
+**/xcuserdata/
+**/DerivedData/
+local.properties
+*.pfx
+*.p8
+*.db*
+*.xcuserstate

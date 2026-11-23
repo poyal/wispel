@@ -1,0 +1,5 @@
+*.sh text eol=lf
+gradlew text eol=lf
+*.shortcut binary
+*.jar binary
+*.png binary

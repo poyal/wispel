@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wispel · 서버 점검</title><link rel="icon" href="icon"><link rel="stylesheet" href="board.css"><link rel="stylesheet" href="diagnostics.css"></head>
+<body><header class="mast"><span class="brand"><img class="brand-mark" src="icon" alt="">Wispel</span><span class="mast-sub">서버 점검</span></header>
+<main class="diag"><header class="intro"><div><h1>전달 상태</h1><p>로컬 읽기 전용 점검</p></div><small id="time">조회 중</small></header>
+<section class="metrics" aria-label="서비스 상태"><article><h2>Windows 서비스</h2><strong id="service" role="status">조회 중</strong></article><article><h2>발송 대기</h2><strong id="queue">—</strong><small id="oldest"></small></article><article><h2>최근 1시간 오류</h2><strong id="errors">—</strong><small>오류가 발생한 이벤트 수</small></article></section>
+<section class="diagnostic-panel"><h2>최근 이벤트</h2><p>항목을 펼쳐 단계별 처리 시각을 확인하세요.</p><div id="events"></div></section>
+<section class="diagnostic-panel"><h2>등록 기기</h2><dl class="devices" id="devices"></dl></section></main>
+<script>
+const labels={call:'전화 알림',missedCall:'부재중 전화',sms:'새 문자',kakao:'카카오톡',slack:'Slack',mail:'메일플러그'};
+const statuses={queued:'발송 대기',sent:'본폰에 전송',ack:'본폰 수신 확인',apns:'APNs 접수',expired:'만료',cancelled:'취소'};
+const errorNames={ios_token_missing:'iOS 토큰 대기',apns_setup_required:'APNs 설정 필요',ios_token_invalid:'iOS 토큰 갱신 필요',apns_unavailable:'APNs 연결 실패'};
+const el=id=>document.getElementById(id);
+const clock=at=>at?new Date(at).toLocaleTimeString('ko-KR'):'—';
+const node=(tag,value)=>{const n=document.createElement(tag);if(value!==undefined)n.textContent=value;return n};
+let last;
+function eventRow(e,open){
+  const key=e.sourceId+'/'+e.eventId, row=node('details'),summary=node('summary'), badge=node('span',statuses[e.status]);
+  row.dataset.key=key;row.open=open.has(key);
+  if(e.status==='queued'||e.status==='sent')badge.className='pending';
+  summary.append(node('time',clock(e.occurredAt)),node('b',labels[e.kind]),badge);
+  const steps=node('div');steps.className='steps';
+  for(const [name,value] of [['서버 접수',clock(e.created)],['본폰 전송 / APNs 접수',clock(e.sentAt)],['본폰 수신 확인',clock(e.ackAt)]]){
+    const step=node('div',name);step.append(node('b',value));steps.append(step);
+  }
+  row.append(summary,steps);if(e.error)row.append(node('p',errorNames[e.error]||e.error));return row;
+}
+async function refresh(){
+  try{
+    const response=await fetch('status',{cache:'no-store'});if(!response.ok)throw Error();
+    const d=await response.json();last=clock(d.checkedAt);
+    el('time').textContent='마지막 조회 '+last;el('service').textContent='실행 중';el('queue').textContent=d.pending+'건';el('errors').textContent=d.recentErrors+'건';
+    el('oldest').textContent='가장 오래된 대기 '+(d.oldest?Math.max(0,Math.floor((d.checkedAt-d.oldest)/1000))+'초':'—');
+    const open=new Set([...el('events').querySelectorAll('details[open]')].map(n=>n.dataset.key));
+    el('events').replaceChildren(...(d.events.length?d.events.map(e=>eventRow(e,open)):[node('p','첫 이벤트 대기 중')]));
+    el('devices').replaceChildren(...d.devices.map(v=>{const item=node('div');item.append(node('dt',v.name),node('dd',(v.role==='send'?'보내기 전용 · 마지막 접수 ':'받기 전용 · 마지막 확인 ')+clock(v.lastSeen)));return item}));
+  }catch{el('service').textContent='조회 실패';el('time').textContent=last?'마지막 조회 '+last:'서비스 연결 대기'}
+  finally{setTimeout(refresh,3000)}
+}
+refresh();
+</script></body></html>
