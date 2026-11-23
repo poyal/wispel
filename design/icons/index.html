@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>위스펠 · 앱 아이콘 10종</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;color:#293c32;background:#faf9f1;font-family:"Segoe UI","Malgun Gothic",sans-serif}
+    main{max-width:1280px;margin:auto;padding:32px clamp(16px,3vw,46px) 28px}
+    header{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid #cbd0c3;padding-bottom:17px}
+    h1{font-size:clamp(24px,3vw,39px);letter-spacing:-.065em;margin:0}
+    h1 i{font:italic bold 1.18em Georgia,serif;letter-spacing:-.08em;margin-right:.23em}
+    header>a,details{font-size:12px;color:#465749}
+    p{font-size:13px;color:#536153;margin:14px 0 22px}
+    .grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px 26px}
+    .card{display:grid;gap:10px;color:inherit;text-decoration:none;min-width:0}
+    .large{width:100%;aspect-ratio:1;display:block;border-radius:23%;box-shadow:0 0 0 1px #233f2610}
+    .card div{display:flex;align-items:center;gap:8px}.number{font:12px/1 Consolas,monospace;color:#5f6b5c}.card strong{font-size:15px;letter-spacing:-.04em}
+    .small{height:32px;width:32px;border-radius:23%;margin-left:auto}
+    .card:focus-visible{outline:3px solid #876622;outline-offset:4px}.card:hover strong{text-decoration:underline}
+    details{margin-top:24px;border-top:1px solid #cbd0c3;padding-top:10px}summary{cursor:pointer}details li{margin-bottom:6px}
+    @media(max-width:800px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+    @media(max-width:540px){main{padding-top:18px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 14px}.card strong{font-size:13px}.card div{gap:5px}.small{width:26px;height:26px}}
+  </style>
+</head>
+<body>
+  <main>
+    <header><h1><i>Wispel</i> 앱 아이콘 시안</h1><a href="../index.html">Mosaic 화면 보기 ↗</a></header>
+    <p>작은 아이콘으로 홈 화면에서의 인상을 비교해 보세요. 각 시안을 누르면 원본이 열립니다.</p>
+    <section class="grid" aria-label="앱 아이콘 후보 열 가지">
+      <a class="card" href="01-feather.png" aria-label="01 깃결 원본 보기"><img class="large" src="01-feather.png" alt="깃결 아이콘"><div><span class="number">01</span><strong>깃결</strong><img class="small" src="01-feather.png" alt=""></div></a>
+      <a class="card" href="02-mosaic.png" aria-label="02 모자이크 원본 보기"><img class="large" src="02-mosaic.png" alt="모자이크 아이콘"><div><span class="number">02</span><strong>모자이크</strong><img class="small" src="02-mosaic.png" alt=""></div></a>
+      <a class="card" href="03-ripple.png" aria-label="03 잔물결 원본 보기"><img class="large" src="03-ripple.png" alt="잔물결 아이콘"><div><span class="number">03</span><strong>잔물결</strong><img class="small" src="03-ripple.png" alt=""></div></a>
+      <a class="card" href="04-cards.png" aria-label="04 겹친 창 원본 보기"><img class="large" src="04-cards.png" alt="겹친 창 아이콘"><div><span class="number">04</span><strong>겹친 창</strong><img class="small" src="04-cards.png" alt=""></div></a>
+      <a class="card" href="05-wind-w.png" aria-label="05 바람 W 원본 보기"><img class="large" src="05-wind-w.png" alt="바람 W 아이콘"><div><span class="number">05</span><strong>바람 W</strong><img class="small" src="05-wind-w.png" alt=""></div></a>
+      <a class="card" href="06-chime.png" aria-label="06 바람종 원본 보기"><img class="large" src="06-chime.png" alt="바람종 아이콘"><div><span class="number">06</span><strong>바람종</strong><img class="small" src="06-chime.png" alt=""></div></a>
+      <a class="card" href="07-seed.png" aria-label="07 홀씨 원본 보기"><img class="large" src="07-seed.png" alt="홀씨 아이콘"><div><span class="number">07</span><strong>홀씨</strong><img class="small" src="07-seed.png" alt=""></div></a>
+      <a class="card" href="08-relay.png" aria-label="08 이어달리기 원본 보기"><img class="large" src="08-relay.png" alt="이어달리기 아이콘"><div><span class="number">08</span><strong>이어달리기</strong><img class="small" src="08-relay.png" alt=""></div></a>
+      <a class="card" href="09-note.png" aria-label="09 접은 쪽지 원본 보기"><img class="large" src="09-note.png" alt="접은 쪽지 아이콘"><div><span class="number">09</span><strong>접은 쪽지</strong><img class="small" src="09-note.png" alt=""></div></a>
+      <a class="card" href="10-cotton.png" aria-label="10 솜방울 원본 보기"><img class="large" src="10-cotton.png" alt="솜방울 아이콘"><div><span class="number">10</span><strong>솜방울</strong><img class="small" src="10-cotton.png" alt=""></div></a>
+    </section>
+    <details><summary>제작 프롬프트 · ImageGen</summary><p lang="en">Use case: logo-brand. Create one square full-bleed mobile app launcher icon artwork for Wispel, Korean personal utility for gentle notifications moving between devices. Its approved UI is Mosaic (warm ivory, butter yellow, sage, blue, muted coral). Modern, distinctive identity design. Center one sophisticated, optically balanced symbol covering about 62% of the canvas, clearly recognizable at 32px. Exact square edge-to-edge colored background, clean silhouettes with a few thick features. No outer border, no rounded-square frame, no label, no captions, no number, no presentation sheet, no mockup, no shadow cast outside canvas.</p><ol lang="en"><li>A single ivory feather with three confident, broad carved cuts bending diagonally upward on a deep spruce-green field. Flat print-like silhouettes, elegant and quiet.</li><li>Four chunky asymmetric ceramic mosaic tesserae make one compact pinwheel with a subtle central negative-space lozenge. Butter yellow, muted blue, sage and terra cotta on an ivory field. Tiny low-relief highlights only.</li><li>Top-down view of three spare, offset, thick concentric open arcs around a single buttery-yellow signal pebble. Modern cut-paper geometry, pale sage field, dark forest ink.</li><li>Two offset overlapping notification cards reduced to a bold single glyph, revealing a small square of light where they overlap. Deep cobalt field, warm ivory and muted periwinkle. Avoid text lines and ellipses.</li><li>A single broad sculptural ribbon gently folding into a clear custom lowercase w monogram. Forest green ink on warm butter yellow, strong serif-like tapered terminals. Only the w is lettering.</li><li>Compact abstract hanging wind chime, two softly rounded dark ceramic bars of differing lengths suspended beneath one mint semicircle, a small solid wind sail. Warm coral pink field, charming Japanese modernist silhouette.</li><li>A drifting dandelion seed stylized into a bold, iconic fan of six short rounded spokes, leaning on one curved tapered stem. Cream seedmark on muted dark indigo. Broad shapes.</li><li>Two offset bold opposing brackets with diagonally cut ends creating a single relay passage, small orange square signal in center gap. Modern Swiss transit symbol, blue ink and coral accent on pale ice blue.</li><li>A single compact origami folded note with lifted triangular corner. Simple two-tone folded planes in butter and bone with forest-green crease on a deep green background. Distinct square, not a paper airplane.</li><li>A very simple tactile ivory cotton puff with three soft lobes perched above a single geometric dark sage leaf, on desaturated sage-green field. Stylized matte embossed clay, soft light, one uninterrupted bold silhouette, no photoreal fibers.</li></ol></details>
+  </main>
+</body>
+</html>
