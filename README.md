@@ -1,9 +1,9 @@
 # wispel
 
-위스펠은 서브폰에 도착한 알림의 종류와 출처를 본폰과 워치에서 확인하는 앱입니다. 현재 단계는 기능 설계와 디자인 시안 검토입니다.
+위스펠은 서브폰에 도착한 알림의 종류와 출처를 본폰과 워치에서 확인하는 앱입니다. 확정 디자인은 **Mosaic · 알림 타일(4번)**입니다.
 
-[프로젝트 계획](plan.md) · [디자인 비교 이미지 원본](design/overview.png)
+[프로젝트 계획](plan.md) · [Mosaic 화면 원본](design/overview.png) · [서버 점검 웹 화면 미리보기](design/diagnostics.png)
 
-![위스펠 디자인 후보 다섯 가지](design/overview.png)
+![Mosaic 안드로이드 홈과 설정, 아이폰 단축어, 워치 알림](design/overview.png)
 
-화면 전환과 버튼 동작을 살펴보려면 저장소를 내려받고 [디자인 보드](design/index.html)를 브라우저에서 여세요.
+저장소를 내려받고 [Mosaic 디자인 보드](design/index.html) 또는 [읽기 전용 점검 웹 시안](design/diagnostics.html)을 브라우저에서 여세요. 두 시안 모두 예시 데이터를 사용합니다.

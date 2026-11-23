@@ -1,0 +1,19 @@
+.diag{max-width:1080px;margin:0 auto;padding-bottom:36px;color:#26382f}
+.diag .intro{border-bottom:1px solid #cdd4c9;padding-bottom:22px}
+.diag .intro>small,.diag article>small,.diagnostic-panel p,.devices dd{color:#58675e;font-size:12px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}
+.metrics article,.diagnostic-panel{border:1px solid #cdd4c9;border-radius:15px;padding:20px}
+.metrics article{display:grid;gap:11px;background:#d6e5d9}
+.metrics article:nth-child(2){background:#f5dfa1}.metrics article:nth-child(3){background:#edcfbd}
+.metrics h2{font-size:14px;margin:0}.metrics strong{font-size:32px;letter-spacing:-.06em}.metrics strong small{font-size:14px;margin-left:4px}
+.diagnostic-panel{margin-top:16px;background:#fffef8}.diagnostic-panel h2{margin:0 0 5px;font-size:21px;letter-spacing:-.06em}
+.diagnostic-panel p{margin:4px 0 17px}
+.diag details{border-top:1px solid #dce0d5}
+.diag summary{cursor:pointer;padding:13px 0;display:grid;grid-template-columns:18px 90px 1fr auto;align-items:center;gap:10px;font-size:13px}
+.diag summary::before{content:'›';font-size:20px}.diag details[open] summary::before{transform:rotate(90deg)}
+.diag summary time{font-variant-numeric:tabular-nums;color:#526455}.diag summary span{background:#deeadf;color:#36553d;border-radius:12px;padding:4px 9px;font-size:11px}
+.diag .pending{background:#f8e7b6;color:#6a4d12}
+.steps{padding:13px 17px;margin:0 0 12px;background:#f2f3ed;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-radius:9px}
+.steps div{display:grid;gap:5px;font-size:12px;color:#5b685e}.steps b{color:#293e31;font-variant-numeric:tabular-nums}
+.devices{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:15px 0 0}.devices dt{font-size:14px;font-weight:bold}.devices dd{margin:4px 0 0}
+@media(max-width:600px){.metrics{gap:5px}.metrics article{padding:10px}.metrics h2,.metrics article>small{font-size:10px}.metrics strong{font-size:21px}.diagnostic-panel{padding:14px}.diag summary{grid-template-columns:10px 62px 1fr auto;gap:5px;font-size:12px}.steps,.devices{grid-template-columns:1fr}.steps{gap:9px}.steps div{grid-template-columns:100px 1fr}}
