@@ -23,4 +23,17 @@
 
 결과 파일과 실행 중 생성된 등록 주소는 로컬 `artifacts/`에 보관합니다. 점검 주소, 등록 QR, 기기 토큰은 저장소에 올리지 않습니다. [실행 결과와 실기기 시험 범위](../planning/verification.md)
 
+### 시뮬레이터 재시작 직후 외부 URL 실행 비교
+
+시험 아이폰에 Wispel-Sms, Wispel-Mail, Wispel-Slack, Wispel-Call, Wispel-Kakao를 가져와 각각 한 번 실행하고 최초 권한을 허용합니다. 전화 템플릿 파일명이 다르면 `-PhoneWorkflow`에 보관함의 이름을 지정합니다. QA 서버에는 이 아이폰 한 대와 직접 수신 중인 Android 본폰 한 대를 등록합니다. Mac의 `~/Library/Developer/WispelQA/Derived`에 같은 시뮬레이터 앱 빌드를 준비하고 두 기기의 이전 발송 대기열을 비웁니다.
+
+```powershell
+.\qa\Test-IosColdStart.ps1 -Mac <SSH별칭> -Simulator <시험용UDID> -Mode Burst
+.\qa\Test-IosColdStart.ps1 -Mac <SSH별칭> -Simulator <시험용UDID> -Mode WaitForAck
+```
+
+두 명령 모두 켜져 있는 시험 시뮬레이터를 재시작합니다. `Burst`는 3초 간격으로 여섯 URL을 열고 `WaitForAck`는 앞선 이벤트의 Android 수신 확인 후 다음 URL을 엽니다. 각각 새 이벤트만 종류별로 집계합니다. 하나라도 누락·중복이면 실패합니다. 원인을 대조할 때는 해당 시간대 iOS 로그의 `Shortcuts` 실행 제어기와 `BackgroundShortcutRunner`의 중지·동작 실행 시각을 함께 봅니다.
+
+한 번의 실행 안에서 위스펠 동작을 연달아 호출하는 대조군도 있습니다. 시뮬레이터에 `Wispel-QA-DirectSix`라는 시험 단축어를 만들고 **위스펠로 알림 전달** 여섯 개를 문자, 메일, Slack, 전화, 전화, 카카오톡 순서로 배치합니다. 첫 전화에는 `QA incoming`, 두 번째에는 첫 줄에 `QA`, 둘째 줄에 `부재중 전화`를 입력합니다. 최초 실행 권한을 허용한 뒤 같은 명령의 `-Mode SingleWorkflow`로 확인합니다.
+
 단축어 템플릿을 바꾸면 Mac에서 `python3 ios-phone/Tools/shortcut_templates.py <임시폴더>`로 원본을 생성합니다. 변경한 파일마다 `shortcuts sign --mode anyone --input <원본.shortcut> --output <새파일.shortcut>`을 실행하고 서명한 결과를 `ios-phone/Shortcuts/`의 해당 이름으로 복사한 뒤 가져오기와 실행을 재시험합니다. 시험용 URL의 전화 입력은 퍼센트 인코딩된 텍스트입니다. [Apple 단축어 URL 입력 규약](https://support.apple.com/guide/shortcuts/apd624386f42/ios)
